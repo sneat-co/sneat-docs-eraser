@@ -1,0 +1,27 @@
+cloud-architecture-diagram
+
+title Cloud Architecture Diagram
+
+// Define groups and nodes
+
+// New nodes
+Firestore [icon: gcp-firestore]
+Google AppEngine [icon: gcp-app-engine, label: "AppEngine (Go)"]
+Web App [icon: angular, label: "Web App (Angular/TypeScript)"]
+Sentry [icon: sentry]
+
+// Define connections
+Google AppEngine > Data
+Google AppEngine > Queue
+Queue > Worker1, Worker2, Worker3
+S3 < Data
+Compute Nodes > Analytics
+
+// New connections
+Firestore > Web App: notify changes in real time
+Firestore > Google AppEngine: reads data
+Web App > Google AppEngine: update data via HTTPS
+Google AppEngine > Firestore: store data
+Google AppEngine > Sentry: log errors
+Web App > Sentry: log errors
+
